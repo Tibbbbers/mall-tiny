@@ -5,7 +5,6 @@ import com.macro.mall.tiny.common.api.CommonPage;
 import com.macro.mall.tiny.common.api.CommonResult;
 import com.macro.mall.tiny.modules.ums.model.UmsResource;
 import com.macro.mall.tiny.modules.ums.service.UmsResourceService;
-import com.macro.mall.tiny.security.component.DynamicSecurityMetadataSource;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +24,12 @@ public class UmsResourceController {
 
     @Autowired
     private UmsResourceService resourceService;
-    @Autowired
-    private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
 
     @ApiOperation("添加后台资源")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult create(@RequestBody UmsResource umsResource) {
         boolean success = resourceService.create(umsResource);
-        dynamicSecurityMetadataSource.clearDataSource();
         if (success) {
             return CommonResult.success(null);
         } else {
@@ -47,7 +43,6 @@ public class UmsResourceController {
     public CommonResult update(@PathVariable Long id,
                                @RequestBody UmsResource umsResource) {
         boolean success = resourceService.update(id, umsResource);
-        dynamicSecurityMetadataSource.clearDataSource();
         if (success) {
             return CommonResult.success(null);
         } else {
@@ -68,7 +63,6 @@ public class UmsResourceController {
     @ResponseBody
     public CommonResult delete(@PathVariable Long id) {
         boolean success = resourceService.delete(id);
-        dynamicSecurityMetadataSource.clearDataSource();
         if (success) {
             return CommonResult.success(null);
         } else {

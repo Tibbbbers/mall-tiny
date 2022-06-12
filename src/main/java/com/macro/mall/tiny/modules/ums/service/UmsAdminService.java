@@ -7,7 +7,6 @@ import com.macro.mall.tiny.modules.ums.dto.UpdateAdminPasswordParam;
 import com.macro.mall.tiny.modules.ums.model.UmsAdmin;
 import com.macro.mall.tiny.modules.ums.model.UmsResource;
 import com.macro.mall.tiny.modules.ums.model.UmsRole;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -80,5 +79,4 @@ public interface UmsAdminService extends IService<UmsAdmin> {
     /**
      * 获取用户信息
      */
-    UserDetails loadUserByUsername(String username);
 }
