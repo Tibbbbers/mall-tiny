@@ -35,6 +35,9 @@ import static com.macro.mall.tiny.modules.ums.service.openai.OpenaiService.Weath
 @Service
 public class OpenaiService {
 
+    public static final String openapikey = "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";
+
+    public static final String openapikey_header = "Bearer " + openapikey;
 
     public boolean useai() {
 
@@ -73,7 +76,7 @@ public class OpenaiService {
 
         Map<String,String> header = new HashMap<>();
         header.put("Content-Type","application/json");
-        header.put("Authorization","Bearer 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");
+        header.put("Authorization",openapikey_header);
 
 
 

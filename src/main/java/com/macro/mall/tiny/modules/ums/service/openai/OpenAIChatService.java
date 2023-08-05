@@ -24,20 +24,25 @@ import static com.macro.mall.tiny.modules.ums.service.openai.OpenaiService.Weath
 public class OpenAIChatService {
 
 
+    public static final String openapikey = "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";
+
+    public static final String openapikey_header = "Bearer " + openapikey;
+
     public String chatByHttp(ChatRequest chatRequest) {
         String content = chatRequest.getContent();
 
         Map<String, String> header = new HashMap<>();
         header.put("Content-Type", "application/json");
-        header.put("Authorization", "Bearer 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");
+        header.put("Authorization", openapikey_header);
 
         String url = "https://api.openai.com/v1/chat/completions";
         String result = HttpUtils.postJson(url, header, "{\n" +
                 "     \"model\": \"gpt-3.5-turbo\",\n" +
-                "     \"messages\": [{\"role\": \"user\", \"content\": " + content + "}],\n" +
+                "     \"messages\": [{\"role\": \"user\", \"content\": \"" + content + "\"}],\n" +
                 "     \"temperature\": 0.7\n" +
                 "   }");
         log.info("OpenAIChatService#chatByHttp.result:" + result);
+
         System.out.println(result);
         return result;
     }
